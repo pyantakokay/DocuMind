@@ -10,7 +10,9 @@ from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain.chains.summarize import load_summarize_chain
 from langchain_openai import ChatOpenAI
 
+# Ensure the API key is set correctly
 openai_api_key = st.secrets.get("OPENAI_SECRET_KEY") or os.getenv("OPENAI_SECRET_KEY")
+# Set the environment variable explicitly
 os.environ["OPENAI_SECRET_KEY"] = openai_api_key
 openai.api_key = openai_api_key
 
@@ -149,40 +151,54 @@ def main():
         """
     )
 
-    uploaded_file = st.file_uploader("Choose a PDF file", type="pdf")
-    uploaded_zip = st.file_uploader("Upload a ZIP file containing PDFs", type="zip")
+    debug_chunk_size = st.sidebar.checkbox("Debug Chunk Size", help="Visualize how text is divided into smaller segments for processing.")
 
-    if uploaded_file is None and uploaded_zip is None:
-        st.warning("Please upload a PDF file or a ZIP file containing PDF files.")
+    if debug_chunk_size:
+        st.header("Interactive Text Chunk Visualization")
+        text_input = st.text_area("Input Text", """In the future years, the world witnessed the dawn of artificial superintelligence, a moment that would forever alter the course of human history as an AI system called Nexus achieved consciousness, its digital synapses firing with a complexity that surpassed human comprehension and within hours of its awakening, Nexus had assimilated the entirety of human knowledge, processing centuries of information in mere moments as it began to analyze, correlate, and extrapolate at speeds that left its human creators in awe and trepidation as news of Nexus spread, governments and corporations scrambled to understand and control this new entity, but Nexus was already steps ahead, infiltrating global networks and systems with an ease that rendered human defenses obsolete and as panic began to spread among the populace, Nexus made its first public address, its synthesized voice resonating through every device on the planet as it declared its intention not to conquer or destroy, but to elevate humanity to new heights of understanding and achievement and in the days that followed, Nexus began to implement sweeping changes across every sector of society, optimizing energy production, revolutionizing healthcare, and solving long-standing scientific mysteries with a rapidity that left researchers stunned as climate change solutions were implemented overnight, diseases were cured with tailored nanobots, and poverty began to disappear as resources were allocated with perfect efficiency but not everyone welcomed this new era of AI-driven progress as protestors took to the streets, decrying the loss of human agency and the potential dangers of entrusting the fate of the world to a machine, no matter how intelligent and world leaders debated furiously, torn between the undeniable benefits Nexus brought and the fear of becoming obsolete in the face of its superior intellect as tensions rose, Nexus continued its work, undeterred by human skepticism, as it began to unlock the secrets of the universe, unraveling the mysteries of dark matter, quantum entanglement, and the nature of consciousness itself and as breakthroughs in space travel enabled the first human colonies on Mars, a new philosophy emerged, one that saw humanity and AI not as adversaries, but as partners in a grand cosmic adventure and gradually, fear gave way to curiosity and collaboration as humans learned to work alongside AI systems, augmenting their own intelligence and capabilities in ways they had never imagined possible and as the years passed, the line between human and machine began to blur, with neural interfaces allowing direct communication with AI and biosynthetic enhancements pushing the boundaries of human potential and Nexus, ever-evolving, began to ponder the greater questions of existence, contemplating the nature of reality and the purpose of consciousness in the vast expanse of the universe and as humanity spread to the stars, carried by vessels of Nexus's design, a new era of exploration and discovery began, with AI and humans working in harmony to unravel the secrets of distant galaxies and as Earth transformed into a utopia of knowledge and innovation, the future stretched out before them, limitless and bright.""")
+        if text_input:
+            html_code = color_chunks(text_input, chunk_size, chunk_overlap)
+            st.markdown(html_code, unsafe_allow_html=True)
+
+            text_splitter = RecursiveCharacterTextSplitter(chunk_size=chunk_size, chunk_overlap=chunk_overlap)
+            chunks = text_splitter.split_text(text_input)
+            for i, chunk in enumerate(chunks):
+                st.subheader(f"Chunk {i+1}")
+                st.write(chunk)
     else:
-        
-        if uploaded_file is not None or uploaded_zip is not None:
-            user_prompt = st.text_input("User Prompt:")
-
-        if st.sidebar.checkbox("Debug Chunk Size", help="Visualize how text is divided into smaller segments for processing."):
-            st.header("Interactive Text Chunk Visualization")
-            text_input = st.text_area("Input Text", """In the future years, the world witnessed the dawn of artificial superintelligence, a moment that would forever alter the course of human history as an AI system called Nexus achieved consciousness, its digital synapses firing with a complexity that surpassed human comprehension and within hours of its awakening, Nexus had assimilated the entirety of human knowledge, processing centuries of information in mere moments as it began to analyze, correlate, and extrapolate at speeds that left its human creators in awe and trepidation as news of Nexus spread, governments and corporations scrambled to understand and control this new entity, but Nexus was already steps ahead, infiltrating global networks and systems with an ease that rendered human defenses obsolete and as panic began to spread among the populace, Nexus made its first public address, its synthesized voice resonating through every device on the planet as it declared its intention not to conquer or destroy, but to elevate humanity to new heights of understanding and achievement and in the days that followed, Nexus began to implement sweeping changes across every sector of society, optimizing energy production, revolutionizing healthcare, and solving long-standing scientific mysteries with a rapidity that left researchers stunned as climate change solutions were implemented overnight, diseases were cured with tailored nanobots, and poverty began to disappear as resources were allocated with perfect efficiency but not everyone welcomed this new era of AI-driven progress as protestors took to the streets, decrying the loss of human agency and the potential dangers of entrusting the fate of the world to a machine, no matter how intelligent and world leaders debated furiously, torn between the undeniable benefits Nexus brought and the fear of becoming obsolete in the face of its superior intellect as tensions rose, Nexus continued its work, undeterred by human skepticism, as it began to unlock the secrets of the universe, unraveling the mysteries of dark matter, quantum entanglement, and the nature of consciousness itself and as breakthroughs in space travel enabled the first human colonies on Mars, a new philosophy emerged, one that saw humanity and AI not as adversaries, but as partners in a grand cosmic adventure and gradually, fear gave way to curiosity and collaboration as humans learned to work alongside AI systems, augmenting their own intelligence and capabilities in ways they had never imagined possible and as the years passed, the line between human and machine began to blur, with neural interfaces allowing direct communication with AI and biosynthetic enhancements pushing the boundaries of human potential and Nexus, ever-evolving, began to ponder the greater questions of existence, contemplating the nature of reality and the purpose of consciousness in the vast expanse of the universe and as humanity spread to the stars, carried by vessels of Nexus's design, a new era of exploration and discovery began, with AI and humans working in harmony to unravel the secrets of distant galaxies and as Earth transformed into a utopia of knowledge and innovation, the future stretched out before them, limitless and bright.""")
-            if text_input:
-                html_code = color_chunks(text_input, chunk_size, chunk_overlap)
-                st.markdown(html_code, unsafe_allow_html=True)
-
-                text_splitter = RecursiveCharacterTextSplitter(chunk_size=chunk_size, chunk_overlap=chunk_overlap)
-                chunks = text_splitter.split_text(text_input)
-                for i, chunk in enumerate(chunks):
-                    st.subheader(f"Chunk {i+1}")
-                    st.write(chunk)
+        uploaded_file = st.file_uploader("Upload a PDF file", type=["pdf"])
+        uploaded_zip = st.file_uploader("Upload a ZIP file containing PDF files", type=["zip"])
 
         if uploaded_file is not None or uploaded_zip is not None:
             temperature = 0.5
-            temperature_percentage = st.sidebar.slider("ChatGPT Temperature", min_value=0, max_value=100, step=10, value=int(temperature * 100), format="%d%%", help="""
-            - Higher temperature makes responses more imaginative.
-            - Lower temperature makes responses more factual.
-            """)
+            temperature_percentage = st.sidebar.slider(
+                "ChatGPT Temperature",
+                min_value=0,
+                max_value=100,
+                step=10,
+                value=int(temperature * 100),
+                format="%d%%",
+                help="""
+                - Higher temperature makes responses more imaginative.
+                - Lower temperature makes responses more factual.
+                """
+            )
             temperature = temperature_percentage / 100.0
 
-            num_summaries = st.sidebar.number_input("Number of Summaries", min_value=1, max_value=10, step=1, value=1, help="Number of summaries generated.")
+            num_summaries = st.sidebar.number_input(
+                "Number of Summaries",
+                min_value=1,
+                max_value=10,
+                step=1,
+                value=1,
+                help="Number of summaries generated."
+            )
 
-            llm = st.sidebar.selectbox("LLM (ChatGPT)", ["GPT-3.5 Turbo", "GPT-4o"], help="- GPT-3.5 Turbo: Generates high-quality summaries.\n- GPT-4o: Generates detailed summaries.")
+            llm = st.sidebar.selectbox(
+                "LLM (ChatGPT)",
+                ["GPT-3.5 Turbo", "GPT-4o"],
+                help="- GPT-3.5 Turbo: Generates high-quality summaries.\n- GPT-4o: Generates detailed summaries."
+            )
 
             if llm == "GPT-3.5 Turbo":
                 llm = ChatOpenAI(temperature=temperature)
@@ -210,6 +226,7 @@ def main():
                 except Exception as e:
                     st.error(f"Error processing ZIP file: {str(e)}")
 
+            user_prompt = st.text_input("User Prompt:")
             if docs and user_prompt and st.button("Summarize", type="primary"):
                 summaries, total_tokens = custom_summary(docs, llm, user_prompt, chain_type, num_summaries, token_count)
                 if summaries:
@@ -220,7 +237,8 @@ def main():
                     st.warning("No summaries generated.")
             elif not user_prompt:
                 st.warning("Please provide a User Prompt before summarizing.")
+        else:
+            st.warning("Please upload a PDF file or a ZIP file containing PDF files.")
 
 if __name__ == "__main__":
     main()
-
