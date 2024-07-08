@@ -1,26 +1,30 @@
-name: summarization_env
+name: requirements_env
 channels:
   - defaults
 dependencies:
   - python=3.8
   - pip=23.0.1
   - pip:
-      - streamlit==1.36.0
-      - torch==2.0.1          # For machine learning
+      - streamlit==1.23.1
+      - numpy==1.23.5
+      - pandas==2.0.2
+      - PyMuPDF==1.19.13  # For PDF handling
+      - torch==2.0.1      # For machine learning
       - transformers==4.30.1  # For NLP tasks
-      - matplotlib==3.7.1     # For plotting
-      - seaborn==0.11.2       # For statistical data visualization
-      - langchain==0.0.198    # For language processing
-      - gradio==3.34.0        # For interactive UI components
-      - ghostscript==9.55.1   # For PDF handling
-      - pymupdf==1.19.13      # For PDF handling
-      - PyYAML==6.0           # For YAML parsing
-      - tqdm==4.65.0          # For progress bars
-      - joblib==1.1.0         # For parallelization
-      - requests==2.31.0      # For HTTP requests
-      - certifi==2023.5.7     # For certificate handling
-      - pillow==9.5.0         # For image processing
-      - openai==0.27.1        # For GPT-3.5 API
-      - tiktoken==0.7.0       # For tokenization  
-      - gensim==5.5.0         # For word embeddings
-      - spacy==3.1.0          # For NLP tasks
+      - matplotlib==3.7.1 # For plotting
+      - seaborn==0.11.2   # For statistical data visualization
+      - langchain==0.0.198  # For language processing
+      - gradio==3.34.0     # For interactive UI components
+      - ghostscript==9.55.1  # For PDF handling
+      - pymupdf==1.19.13  # For PDF handling
+      - PyYAML==6.0       # For YAML parsing
+      - tqdm==4.65.0      # For progress bars
+      - joblib==1.1.0     # For parallelization
+      - requests==2.31.0  # For HTTP requests
+      - certifi==2023.5.7 # For certificate handling
+      - pillow==9.5.0     # For image processing
+      - openai==0.27.1    # For GPT-3.5 API
+      - tiktoken==0.7.0   # For tokenization  
+      - gensim==5.5.0     # For word embeddings
+      - spacy==3.1.0      # For NLP tasks
+      - langchain==0.0.198  # For language processing
