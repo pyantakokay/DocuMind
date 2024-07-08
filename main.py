@@ -10,7 +10,11 @@ from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain.chains.summarize import load_summarize_chain
 from langchain_openai import ChatOpenAI
 
-openai_api_key = st.secrets["OPENAI_SECRET_KEY"]
+# Ensure the API key is set correctly
+openai_api_key = st.secrets.get("OPENAI_SECRET_KEY") or os.environ["OPENAI_SECRET_KEY"]
+# Set the environment variable explicitly
+os.environ["OPENAI_API_KEY"] = openai_api_key
+openai.api_key = openai_api_key
 client = OpenAI(api_key=st.secrets["OPENAI_SECRET_KEY"])
 
 @st.cache_data
