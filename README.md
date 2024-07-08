@@ -6,17 +6,42 @@ Introducing DocuMind, a powerful tool that allows you to generate personalized s
 ## <div align="center">Demo</div>
 
 ### Overview
-![Image](Demo Screenshots/Demo1.png)
-![Image](Demo Screenshots/Demo2.png)
-![Image](Demo Screenshots/Demo3.png)
-![Image](Demo Screenshots/Demo4.png)
-![Image](Demo Screenshots/Demo5.png)
-![Image](Demo Screenshots/Demo6.png)
-![Image](Demo Screenshots/Demo7.png)
-![Image](Demo Screenshots/Demo8.png)
-![Image](Demo Screenshots/Demo9.png)
-![Image](Demo Screenshots/Demo10.png)
-![Image](Demo Screenshots/Demo11.png)
+
+### Main Look
+![Image](https://github.com/pyantakokay/DocuMind/blob/main/Demo%20Screenshots/Demo1.png)
+
+### PDF uploaded successfully
+![Image](https://github.com/pyantakokay/DocuMind/blob/main/Demo%20Screenshots/Demo2.png)
+
+### Entered prompt and summarized PDF using map_reduce w/ default values
+![Image](https://github.com/pyantakokay/DocuMind/blob/main/Demo%20Screenshots/Demo3.png)
+
+### Summarized PDF using stuff w/ default values
+![Image](https://github.com/pyantakokay/DocuMind/blob/main/Demo%20Screenshots/Demo4.png)
+
+
+### Summarized PDF using refine w/ default values
+![Image](https://github.com/pyantakokay/DocuMind/blob/main/Demo%20Screenshots/Demo5.png)
+
+
+### ZIP file uploaded successfully (5 PDF files)
+![Image](https://github.com/pyantakokay/DocuMind/blob/main/Demo%20Screenshots/Demo6.png)
+
+
+### Summarized ZIP using map_reduce w/ default values
+![Image](https://github.com/pyantakokay/DocuMind/blob/main/Demo%20Screenshots/Demo7.png)
+
+### Summarized ZIP using stuff w/ default values
+![Image](https://github.com/pyantakokay/DocuMind/blob/main/Demo%20Screenshots/Demo8.png)
+
+### Summarized ZIP using refine w/ default values
+![Image](https://github.com/pyantakokay/DocuMind/blob/main/Demo%20Screenshots/Demo9.png)
+
+### Interactive Text Chunk Visualizer (Debug Chunk Size)
+![Image](https://github.com/pyantakokay/DocuMind/blob/main/Demo%20Screenshots/Demo10.png)
+
+### Text Splitter Visualizer
+![Image](https://github.com/pyantakokay/DocuMind/blob/main/Demo%20Screenshots/Demo11.png)
 
 ## Badges
   ![Brave](https://img.shields.io/badge/Brave-FB542B?style=for-the-badge&logo=Brave&logoColor=white)
