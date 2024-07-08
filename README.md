@@ -1,4 +1,4 @@
-![Logo](DocuMind-Logo.png)
+![Logo](V3-Logo.png)
 
 #  ~ DocuMind ~
 Introducing DocuMind, a powerful tool that allows you to generate personalized summaries of PDF documents. Leveraging the latest advancements in natural language processing and machine learning, this tool empowers you to tailor the summarization process to your specific needs, ensuring you get the most relevant and insightful information from your source material.
@@ -6,10 +6,8 @@ Introducing DocuMind, a powerful tool that allows you to generate personalized s
 ## <div align="center">Demo</div>
 
 ### Overview
-![Image](Demo.png)
 
-### Input w/ default values
-![Image](Demo-2.png)
+
 
 ## Badges
   ![Brave](https://img.shields.io/badge/Brave-FB542B?style=for-the-badge&logo=Brave&logoColor=white)
