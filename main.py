@@ -1,7 +1,6 @@
 import os
 import zipfile
 from io import BytesIO
-from openai import OpenAI
 import openai
 import streamlit as st
 from langchain_community.document_loaders import PyMuPDFLoader
@@ -10,12 +9,9 @@ from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain.chains.summarize import load_summarize_chain
 from langchain_openai import ChatOpenAI
 
-# Ensure the API key is set correctly
-openai_api_key = st.secrets.get("OPENAI_SECRET_KEY") or os.environ["OPENAI_SECRET_KEY"]
-# Set the environment variable explicitly
+openai_api_key = st.secrets["OPENAI_SECRET_KEY"]
 os.environ["OPENAI_API_KEY"] = openai_api_key
 openai.api_key = openai_api_key
-client = OpenAI(api_key=st.secrets["OPENAI_SECRET_KEY"])
 
 @st.cache_data
 def setup_documents(uploaded_file, chunk_size, chunk_overlap):
