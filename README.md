@@ -6,8 +6,17 @@ Introducing DocuMind, a powerful tool that allows you to generate personalized s
 ## <div align="center">Demo</div>
 
 ### Overview
-
-
+![Image](Demo Screenshots/Demo1.png)
+![Image](Demo Screenshots/Demo2.png)
+![Image](Demo Screenshots/Demo3.png)
+![Image](Demo Screenshots/Demo4.png)
+![Image](Demo Screenshots/Demo5.png)
+![Image](Demo Screenshots/Demo6.png)
+![Image](Demo Screenshots/Demo7.png)
+![Image](Demo Screenshots/Demo8.png)
+![Image](Demo Screenshots/Demo9.png)
+![Image](Demo Screenshots/Demo10.png)
+![Image](Demo Screenshots/Demo11.png)
 
 ## Badges
   ![Brave](https://img.shields.io/badge/Brave-FB542B?style=for-the-badge&logo=Brave&logoColor=white)
