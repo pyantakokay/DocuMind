@@ -1,5 +1,6 @@
 {pkgs}: {
   deps = [
+    pkgs.python310Packages.conda
     pkgs.xcbuild
     pkgs.swig
     pkgs.openjpeg
